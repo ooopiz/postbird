@@ -9,12 +9,7 @@ then
   exit 1
 fi
 
-#
-# List types in this indics
-#
-
-RESOURCE="/$1/_mappings?pretty"
-#RESOURCE="/$1/_mapping?pretty"
+RESOURCE="/$1/_alias?pretty"
 URL="${ES_SCHEME}://${ES_HOST}:${ES_PORT}${RESOURCE}"
 
 curl -s -X GET "$URL"
