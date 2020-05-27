@@ -12,4 +12,4 @@ fi
 RESOURCE="/$1/_alias?pretty"
 URL="${ES_SCHEME}://${ES_HOST}:${ES_PORT}${RESOURCE}"
 
-curl -s -X GET "$URL"
+curl -X GET "$URL"

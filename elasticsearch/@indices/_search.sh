@@ -25,7 +25,7 @@ generate_post_data()
 EOF
 }
 
-curl -s -X GET "$URL" \
+curl -X GET "$URL" \
   -H "accept: */*" \
   -H "Content-Type: application/json" \
   -d "$(generate_post_data)"

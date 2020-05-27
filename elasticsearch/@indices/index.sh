@@ -3,13 +3,25 @@
 BASEDIR=$(dirname "$0") && . "${BASEDIR}/../env.sh"
 
 
-if [ ! $# -eq 1 ]
+if [ ! $# -eq 2 ]
 then
-  echo "$0 indices"
+  echo "$0 <method> <indices>"
+  echo "method: [GET, PUT, DELETE]"
   exit 1
 fi
 
-RESOURCE="/$1?pretty"
-URL="${ES_SCHEME}://${ES_HOST}:${ES_PORT}${RESOURCE}"
+run()
+{
+  RESOURCE="/$2?pretty"
+  URL="${ES_SCHEME}://${ES_HOST}:${ES_PORT}${RESOURCE}"
+  curl -X $1 "$URL"
+}
 
-curl -s -X GET "$URL"
+case $1 in
+  GET|PUT|DELETE)
+    run $1 $2
+    ;;
+  *)
+    echo "method: [GET, PUT, DELETE]"
+    ;;
+esac
